@@ -1,5 +1,8 @@
 # FitNova Sales Intelligence
 
+* **Demo Video**: [Google Drive Link](https://drive.google.com/drive/folders/1UBNqAj5LBdQ__1s5AiUGobBUN_6NUkju?usp=drive_link)
+* **GitHub Repository**: [GitHub Link](https://github.com/tarunkulkarni4/Fitnova_AI_Engineer_Assignment.git)
+
 ## What It Does
 FitNova Sales Intelligence is an AI-powered enterprise compliance and performance auditing platform for sales operations. It automatically ingests and normalizes sales call audio, transcribes conversations with speaker diarization, redacts PII for privacy, and analyzes transcripts using LLMs to flag compliance issues and generate scores. An immutable feedback system ensures manager corrections are saved as audit logs, enabling a human-in-the-loop review cycle.
 
@@ -22,23 +25,23 @@ graph TD
 ```
 
 ## Quick Start
-To set up and run the entire application with database migrations and seeded demo data in one command, run:
+To set up and run the entire application with database migrations and seeded demo data in one command, run in PowerShell:
 ```powershell
 .\start.ps1
 ```
 
 ## Prerequisites
-* **OS**: Windows (for `start.ps1` script execution; manual commands run on Linux/macOS)
-* **Python**: v3.11 or v3.12 (with pip)
+* **OS**: Windows (Windows 10/11)
+* **Python**: v3.11 or v3.12 (installed and added to PATH)
 * **Node.js**: v18 or newer
 * **npm**: v9 or newer
-* **PostgreSQL**: Installed, running locally, and configured with credentials in `.env`
-* **FFmpeg**: Installed and configured in system `PATH` (required by Whisper and Pyannote for audio parsing)
+* **PostgreSQL**: Installed locally, service running, and configured with credentials in `.env`
+* **FFmpeg**: Installed locally and configured in system `PATH` (required by Whisper and Pyannote for audio parsing)
 
 ## Environment Setup
 1. Copy the template:
-   ```bash
-   cp backend/.env.example backend/.env
+   ```powershell
+   Copy-Item backend/.env.example backend/.env
    ```
 2. Configure credentials in `backend/.env`:
    * Set database connection parameters (`POSTGRES_USER`, `POSTGRES_PASSWORD`, etc.)
@@ -57,39 +60,33 @@ To set up and run the entire application with database migrations and seeded dem
 
 ## Run the Application
 
-### Setup Command (Windows)
+### Setup Command (PowerShell)
 ```powershell
 .\start.ps1
 ```
-This script will verify prerequisites, install venv/node_modules, apply Alembic migrations, seed mock advisors/teams, and open two new terminal windows running the backend and frontend dev servers.
+This script verifies prerequisites, creates the virtual environment, installs node modules, applies Alembic migrations, seeds mock advisors/teams, and opens two new PowerShell console windows running the backend and frontend dev servers.
 
-### Manual Fallback Setup (Cross-platform/Debugging)
+### Manual Fallback Setup (Debugging)
 
 #### 1. Backend Setup:
-```bash
+```powershell
 cd backend
 python -m venv venv
-
-# Activate Virtual Environment:
-# On Windows:
 .\venv\Scripts\Activate.ps1
-# On Linux/macOS:
-source venv/bin/activate
-
 pip install -r requirements.txt
 
 # Run migrations:
-alembic upgrade head
+.\venv\Scripts\alembic.exe upgrade head
 
 # Run seed script (idempotent):
-python seed.py
+.\venv\Scripts\python.exe seed.py
 
 # Start Server:
 python -m uvicorn app.main:app --reload
 ```
 
 #### 2. Frontend Setup:
-```bash
+```powershell
 cd frontend
 npm install
 npm run dev
