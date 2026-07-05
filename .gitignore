@@ -1,0 +1,36 @@
+# Python virtual environment & cache
+backend/venv/
+backend/__pycache__/
+backend/app/storage/audio/processed/
+backend/app/storage/transcripts/
+backend/app/storage/exports/
+*.pyc
+
+# Node modules & builds
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/test_output.log
+
+# Private configs & environment files
+.env
+backend/.env
+frontend/.env
+
+# SQLite databases
+backend/*.db
+backend/*.db-journal
+*.db
+*.db-journal
+
+# Temporary debug files & logs
+*.log
+backend/alignment_debug.txt
+backend/diarization_comparison.txt
+backend/whisper_debug_out.txt
+
+# OS / IDE configs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
